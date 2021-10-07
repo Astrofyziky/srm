@@ -1,0 +1,44 @@
+﻿.no-padding {
+  padding: 0 !important; }
+
+.margin-top-minus-10 {
+  margin-top: -10px !important; }
+
+.align-baseline {
+  align-items: baseline; }
+
+.bottom-padding-15 {
+  padding-bottom: 15px; }
+
+.span-middle-empty {
+  flex: 1 1 auto; }
+
+.span-content-row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: auto;
+  margin-left: auto; }
+
+.pl-10px {
+  padding-left: 10px; }
+
+.scale-50 {
+  transform: scale(0.5); }
+
+.scale-100 {
+  transform: scale(1); }
+
+.scale-150 {
+  transform: scale(1.5); }
+
+.scale-200 {
+  transform: scale(2); }
+
+.scale-250 {
+  transform: scale(2.5); }
+
+.scale-300 {
+  transform: scale(3); }
+
+.scale-350 {
+  transform: scale(3.5); }

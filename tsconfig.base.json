@@ -14,7 +14,16 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@srm/data-grid/api-service": ["libs/data-grid/api-service/src/index.ts"],
+      "@srm/data-grid/grid-contents": [
+        "libs/data-grid/grid-contents/src/index.ts"
+      ],
+      "@srm/shared/alert-dialog": ["libs/shared/alert-dialog/src/index.ts"],
+      "@srm/shared/loading-spinner": [
+        "libs/shared/loading-spinner/src/index.ts"
+      ]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }

@@ -1,7 +1,385 @@
 {
   "version": 2,
-  "projects": {},
+  "projects": {
+    "dashboard-shell": {
+      "projectType": "application",
+      "root": "apps/dashboard-shell",
+      "sourceRoot": "apps/dashboard-shell/src",
+      "prefix": "srm",
+      "targets": {
+        "build": {
+          "executor": "@nrwl/angular:webpack-browser",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/apps/dashboard-shell",
+            "index": "apps/dashboard-shell/src/index.html",
+            "main": "apps/dashboard-shell/src/main.ts",
+            "polyfills": "apps/dashboard-shell/src/polyfills.ts",
+            "tsConfig": "apps/dashboard-shell/tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              "apps/dashboard-shell/src/favicon.ico",
+              "apps/dashboard-shell/src/assets"
+            ],
+            "styles": ["apps/dashboard-shell/src/styles.scss"],
+            "scripts": [],
+            "customWebpackConfig": {
+              "path": "apps/dashboard-shell/webpack.config.js"
+            }
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "apps/dashboard-shell/src/environments/environment.ts",
+                  "with": "apps/dashboard-shell/src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "all",
+              "customWebpackConfig": {
+                "path": "apps/dashboard-shell/webpack.prod.config.js"
+              }
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "executor": "@nrwl/angular:webpack-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "dashboard-shell:build:production"
+            },
+            "development": {
+              "browserTarget": "dashboard-shell:build:development"
+            }
+          },
+          "defaultConfiguration": "development",
+          "options": {}
+        },
+        "extract-i18n": {
+          "executor": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "dashboard-shell:build"
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/dashboard-shell/src/**/*.ts",
+              "apps/dashboard-shell/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/dashboard-shell"],
+          "options": {
+            "jestConfig": "apps/dashboard-shell/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "serve-mfe": {
+          "executor": "@nrwl/workspace:run-commands",
+          "options": {
+            "commands": ["nx serve data-grid", "nx serve dashboard-shell"]
+          }
+        }
+      }
+    },
+    "dashboard-shell-e2e": {
+      "root": "apps/dashboard-shell-e2e",
+      "sourceRoot": "apps/dashboard-shell-e2e/src",
+      "projectType": "application",
+      "targets": {
+        "e2e": {
+          "executor": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/dashboard-shell-e2e/cypress.json",
+            "devServerTarget": "dashboard-shell:serve:development"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "dashboard-shell:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": ["apps/dashboard-shell-e2e/**/*.{js,ts}"]
+          }
+        }
+      }
+    },
+    "data-grid": {
+      "projectType": "application",
+      "root": "apps/data-grid",
+      "sourceRoot": "apps/data-grid/src",
+      "prefix": "srm",
+      "targets": {
+        "build": {
+          "executor": "@nrwl/angular:webpack-browser",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/apps/data-grid",
+            "index": "apps/data-grid/src/index.html",
+            "main": "apps/data-grid/src/main.ts",
+            "polyfills": "apps/data-grid/src/polyfills.ts",
+            "tsConfig": "apps/data-grid/tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              "apps/data-grid/src/favicon.ico",
+              "apps/data-grid/src/assets"
+            ],
+            "styles": ["apps/data-grid/src/styles.scss"],
+            "scripts": [],
+            "customWebpackConfig": {
+              "path": "apps/data-grid/webpack.config.js"
+            }
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "apps/data-grid/src/environments/environment.ts",
+                  "with": "apps/data-grid/src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "all",
+              "customWebpackConfig": {
+                "path": "apps/data-grid/webpack.prod.config.js"
+              }
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "executor": "@nrwl/angular:webpack-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "data-grid:build:production"
+            },
+            "development": {
+              "browserTarget": "data-grid:build:development"
+            }
+          },
+          "defaultConfiguration": "development",
+          "options": {
+            "port": 4201
+          }
+        },
+        "extract-i18n": {
+          "executor": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "data-grid:build"
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/data-grid/src/**/*.ts",
+              "apps/data-grid/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/data-grid"],
+          "options": {
+            "jestConfig": "apps/data-grid/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "data-grid-api-service": {
+      "projectType": "library",
+      "root": "libs/data-grid/api-service",
+      "sourceRoot": "libs/data-grid/api-service/src",
+      "prefix": "srm",
+      "targets": {
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/data-grid/api-service"],
+          "options": {
+            "jestConfig": "libs/data-grid/api-service/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/data-grid/api-service/src/**/*.ts",
+              "libs/data-grid/api-service/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
+    "data-grid-e2e": {
+      "root": "apps/data-grid-e2e",
+      "sourceRoot": "apps/data-grid-e2e/src",
+      "projectType": "application",
+      "targets": {
+        "e2e": {
+          "executor": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/data-grid-e2e/cypress.json",
+            "devServerTarget": "data-grid:serve:development"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "data-grid:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": ["apps/data-grid-e2e/**/*.{js,ts}"]
+          }
+        }
+      }
+    },
+    "data-grid-grid-contents": {
+      "projectType": "library",
+      "root": "libs/data-grid/grid-contents",
+      "sourceRoot": "libs/data-grid/grid-contents/src",
+      "prefix": "srm",
+      "targets": {
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/data-grid/grid-contents"],
+          "options": {
+            "jestConfig": "libs/data-grid/grid-contents/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/data-grid/grid-contents/src/**/*.ts",
+              "libs/data-grid/grid-contents/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
+    "shared-alert-dialog": {
+      "projectType": "library",
+      "root": "libs/shared/alert-dialog",
+      "sourceRoot": "libs/shared/alert-dialog/src",
+      "prefix": "srm",
+      "targets": {
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/shared/alert-dialog"],
+          "options": {
+            "jestConfig": "libs/shared/alert-dialog/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/shared/alert-dialog/src/**/*.ts",
+              "libs/shared/alert-dialog/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
+    "shared-loading-spinner": {
+      "projectType": "library",
+      "root": "libs/shared/loading-spinner",
+      "sourceRoot": "libs/shared/loading-spinner/src",
+      "prefix": "srm",
+      "targets": {
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/shared/loading-spinner"],
+          "options": {
+            "jestConfig": "libs/shared/loading-spinner/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/shared/loading-spinner/src/**/*.ts",
+              "libs/shared/loading-spinner/src/**/*.html"
+            ]
+          }
+        }
+      }
+    }
+  },
   "cli": {
-    "defaultCollection": "@nrwl/workspace"
-  }
+    "defaultCollection": "@nrwl/angular"
+  },
+  "generators": {
+    "@nrwl/angular:application": {
+      "style": "scss",
+      "linter": "eslint",
+      "unitTestRunner": "jest",
+      "e2eTestRunner": "cypress"
+    },
+    "@nrwl/angular:library": {
+      "style": "scss",
+      "linter": "eslint",
+      "unitTestRunner": "jest"
+    },
+    "@nrwl/angular:component": {
+      "style": "scss"
+    }
+  },
+  "defaultProject": "dashboard-shell"
 }

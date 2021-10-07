@@ -14,12 +14,7 @@
     "default": {
       "runner": "@nrwl/workspace/tasks-runners/default",
       "options": {
-        "cacheableOperations": [
-          "build",
-          "lint",
-          "test",
-          "e2e"
-        ]
+        "cacheableOperations": ["build", "lint", "test", "e2e"]
       }
     }
   },
@@ -31,5 +26,32 @@
       }
     ]
   },
-  "projects": {}
+  "projects": {
+    "dashboard-shell": {
+      "tags": []
+    },
+    "dashboard-shell-e2e": {
+      "tags": [],
+      "implicitDependencies": ["dashboard-shell"]
+    },
+    "data-grid": {
+      "tags": []
+    },
+    "data-grid-api-service": {
+      "tags": []
+    },
+    "data-grid-e2e": {
+      "tags": [],
+      "implicitDependencies": ["data-grid"]
+    },
+    "data-grid-grid-contents": {
+      "tags": []
+    },
+    "shared-alert-dialog": {
+      "tags": []
+    },
+    "shared-loading-spinner": {
+      "tags": []
+    }
+  }
 }

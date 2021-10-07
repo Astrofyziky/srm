@@ -1,0 +1,21 @@
+<div [ngStyle]="{'text-align: center': centerSpinner}">
+    <div [ngClass]="{'mb-2': true, 'text-below': textLocation === 'below', 'text-right': textLocation === 'side'}">
+        <div [ngClass]="{'lds-default': true, 'small-spinner': smallerSpinner }">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <div [ngClass]="{'align-text-center': textLocation === 'side', 'small-spinner-text': smallerSpinner}">
+            {{spinnerText}}
+        </div>
+    </div>
+</div>

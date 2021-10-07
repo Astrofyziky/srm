@@ -1,0 +1,15 @@
+<h1 class="modal-title brand-primary-color text-left bold">{{data.Header}}</h1>
+<hr style="margin-top: 0rem !important;">
+<div mat-dialog-content class="modal-body">
+  <p [innerHtml]="data.Message"></p>
+</div>
+<div style="text-align: center">
+    <div class="row" style="display: inline-block">
+        <button mat-raised-button (click)="Close()" 
+            class="btn btn-continue"
+            color="primary"
+            cdkFocusInitial>
+            {{data.ConfirmButtonText}}
+        </button>
+    </div>
+</div>

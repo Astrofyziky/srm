@@ -1,0 +1,178 @@
+<div class="mb-4">
+    <button mat-raised-button class="btn btn-continue" (click)="openDialog()">Click Me!</button>
+</div>
+
+<div class="col-12 mb-4">
+    
+    <mat-accordion class="example-headers-align" multi="false">
+        <mat-expansion-panel expanded="false" (opened)="fireOpenEvent()">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Filters
+            </mat-panel-title>
+            <mat-panel-description>
+              Select filter criteria
+              <mat-icon>filter_alt</mat-icon>
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+      
+          <mat-form-field class="col-3" appearance="fill">
+            <mat-label>People</mat-label>
+            <mat-select [formControl]="peopleFilter" multiple (selectionChange)="filterResults()" #peopleType>
+              <mat-select-trigger>
+                {{peopleFilter.value ? peopleFilter.value[0] : ''}}
+                <span *ngIf="peopleFilter.value?.length > 1" class="example-additional-selection">
+                  (+{{peopleFilter.value.length - 1}} {{peopleFilter.value?.length === 2 ? 'other' : 'others'}})
+                </span>
+              </mat-select-trigger>
+              <mat-option *ngFor="let person of peopleList" [value]="person">{{person}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+
+
+        <mat-form-field class="col-4" appearance="fill">
+            <mat-label>Phone</mat-label>
+            <mat-select [formControl]="phoneFilter" multiple (selectionChange)="filterResults()" #phoneType>
+              <mat-select-trigger>
+                {{phoneFilter.value ? phoneFilter.value[0] : ''}}
+                <span *ngIf="phoneFilter.value?.length > 1" class="example-additional-selection">
+                  (+{{phoneFilter.value.length - 1}} {{phoneFilter.value?.length === 2 ? 'other' : 'others'}})
+                </span>
+              </mat-select-trigger>
+              <mat-option *ngFor="let phoneNumber of phoneList" [value]="phoneNumber">{{phoneNumber}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+
+
+        <mat-form-field class="col-3" appearance="fill">
+            <mat-label>State</mat-label>
+            <mat-select [formControl]="stateFilter" multiple (selectionChange)="filterResults()" #stateType>
+              <mat-select-trigger>
+                {{stateFilter.value ? stateFilter.value[0] : ''}}
+                <span *ngIf="stateFilter.value?.length > 1" class="example-additional-selection">
+                  (+{{stateFilter.value.length - 1}} {{stateFilter.value?.length === 2 ? 'other' : 'others'}})
+                </span>
+              </mat-select-trigger>
+              <mat-option *ngFor="let state of stateList" [value]="state">{{state}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+
+          </mat-expansion-panel>
+    </mat-accordion>
+
+</div>
+
+
+
+
+
+
+
+
+<div class="col-12">
+    <div class="row">
+        <div class="resultSet">
+            Results Found: <b>{{totalDisplayedElements | number:'':'en'}}</b>
+        </div>
+        <span class="px-2">|</span>
+        
+        <label style="font-weight: normal;">Show:</label>    
+        <div *ngFor="let item of showList">
+            <span [ngClass]="{'action-link': true,'noRightPadding': item.showNumber === 'All','page-numbering-selected': item.isSelected, 'page-numbering-enabled': !item.isSelected}" 
+                (click)="ChangeItemsToShow(item)">{{item.showNumber}}</span>
+        </div>
+    </div>
+</div>
+
+<div>
+    <table mat-table [dataSource]="ifaDetails" 
+        multiTemplateDataRows 
+        matSort class="table table-hover table-bordered hidden-xs">
+
+        <!-- First Name -->
+        <ng-container matColumnDef="firstName">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header class="header-style center-header"> First Name </th>
+            <td mat-cell class="text-left middle-alignment pl-2" *matCellDef="let item"> 
+                {{ item.firstName }}
+            </td>
+        </ng-container>
+
+        <!-- Last Name -->
+        <ng-container matColumnDef="lastName">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header class="header-style center-header"> Last Name </th>
+            <td mat-cell *matCellDef="let item" class="text-left middle-alignment pl-2"> 
+                {{item.lastName}} 
+            </td>
+        </ng-container>
+
+        <!--Phone -->
+        <ng-container matColumnDef="phone">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header class="header-style center-header"> Phone </th>
+            <td mat-cell class="text-left middle-alignment pl-2" *matCellDef="let item"> 
+                {{item.phone}}
+            </td>
+        </ng-container>
+
+        <!--Address -->
+        <ng-container matColumnDef="address">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header class="header-style center-header"> Address </th>
+            <td mat-cell class="text-left middle-alignment pl-2" *matCellDef="let item"> 
+                {{item.address}}
+            </td>
+        </ng-container>
+
+        <!-- State -->
+        <ng-container matColumnDef="state">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header class="header-style center-header"> State </th>
+            <td mat-cell class="text-left middle-alignment pl-2" *matCellDef="let item"> 
+                {{item.state}}
+            </td>
+        </ng-container>
+
+        <!-- Zip -->
+        <ng-container matColumnDef="zip">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header class="header-style center-header"> Zip </th>
+            <td mat-cell class="text-left middle-alignment pl-2" *matCellDef="let item"> 
+                {{item.zip}}
+            </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="tableHeaders"></tr>
+        <tr mat-row *matRowDef="let row; columns: tableHeaders;"></tr>
+    </table>
+    <mat-paginator [hidden]="true"
+        [length]="ifaDetails.data.length"
+        [pageSize]="defaultPageSize" 
+        [pageSizeOptions]="pageSizeOptions">
+    </mat-paginator>
+    
+<table *ngIf="ifaDetails.data !== undefined && ifaDetails.data.length > 10" class="table" style="display: inline-block">
+    <th [ngClass]="{'action-link': currentPageSelected !== 1, 'page-numbering-disabled': currentPageSelected === 1, 'page-numbering-enabled': currentPageSelected !== 1}"
+        style="text-decoration: none !important;display: inline-block;"
+        (click)="PreviousPage()">
+        &lt; <span [ngClass]="{'action-link': currentPageSelected !== 1, 'page-numbering-disabled': currentPageSelected === 1, 'page-numbering-enabled': currentPageSelected !== 1}">
+            Previous
+            </span>
+    </th>
+
+    <th *ngFor="let page of PageLists()"
+        style="display: inline-block;"
+        [ngClass]="{'action-link': currentPageSelected !== page.number,'page-numbering-selected': currentPageSelected === page.number,'page-numbering-enabled': currentPageSelected !== page.number}"
+        (click)="SetPage(page.number)">
+        {{ page.number }}
+    </th>
+
+    <th [ngClass]="{'action-link': currentPageSelected !== pageList.length, 'page-numbering-disabled': currentPageSelected === pageList.length,'page-numbering-enabled': currentPageSelected !== pageList.length}"
+        style="text-decoration: none !important;display: inline-block;"
+        (click)="NextPage()">
+        <span [ngClass]="{'action-link': currentPageSelected !== pageList.length, 'page-numbering-disabled': currentPageSelected === pageList.length,'page-numbering-enabled': currentPageSelected !== pageList.length}">Next</span> &gt;
+    </th>
+</table>
+
+<srm-loading-spinner spinnerText="Loading..."
+    textLocation = "side"
+        [centerSpinner] = "false"
+        [smallerSpinner] = "true"
+        [hidden]="!importingData">
+    </srm-loading-spinner>
+</div>
