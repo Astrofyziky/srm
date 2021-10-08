@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { SharedAlertDialogModule } from '@srm/shared/alert-dialog';
 import { RemoteEntryComponent } from './entry.component';
@@ -21,16 +20,13 @@ import { DataGridGridContentsModule } from '@srm/data-grid/grid-contents';
 // import { MatInputModule } from '@angular/material/input';
 // import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 // import { AcademicsApiServiceModule } from '@srm/academics/api-service';
- import { CommonModule } from '@angular/common';
+import { CommonModule } from '@angular/common';
 // import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
 
 @NgModule({
   declarations: [RemoteEntryComponent],
   imports: [
-    BrowserModule,
     CommonModule,
     SharedAlertDialogModule,
     DataGridGridContentsModule,
@@ -39,7 +35,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
       {
         path: '',
         component: RemoteEntryComponent,
-        runGuardsAndResolvers: "always",
+        runGuardsAndResolvers: 'always',
       },
     ]),
     HttpClientModule,
@@ -59,9 +55,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     // MatInputModule,
     // FormsModule,
     // ReactiveFormsModule,
-    BrowserAnimationsModule
   ],
   providers: [],
-  entryComponents: [RemoteEntryComponent]
+  entryComponents: [RemoteEntryComponent],
 })
 export class RemoteEntryModule {}
