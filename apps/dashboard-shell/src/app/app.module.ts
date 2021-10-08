@@ -6,19 +6,23 @@ import { RouterModule, UrlSerializer } from '@angular/router';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import {MatToolbarModule} from '@angular/material/toolbar';
+import { MatToolbarModule } from '@angular/material/toolbar';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MatMenuModule} from '@angular/material/menu';
-import { APP_BASE_HREF, CommonModule, LocationStrategy, PathLocationStrategy } from '@angular/common';
+import { MatMenuModule } from '@angular/material/menu';
+import {
+  APP_BASE_HREF,
+  CommonModule,
+  LocationStrategy,
+  PathLocationStrategy,
+} from '@angular/common';
 import { DefaultUrlSerializer, UrlTree } from '@angular/router';
 
 export class LowerCaseUrlSerializer extends DefaultUrlSerializer {
   parse(url: string): UrlTree {
-      return super.parse(url.toLowerCase()); 
+    return super.parse(url.toLowerCase());
   }
 }
-
 
 @NgModule({
   declarations: [AppComponent],
@@ -43,12 +47,12 @@ export class LowerCaseUrlSerializer extends DefaultUrlSerializer {
     ),
   ],
   providers: [
-    {provide: LocationStrategy, useClass: PathLocationStrategy},
-    {provide: APP_BASE_HREF, useValue: '/' },
+    { provide: LocationStrategy, useClass: PathLocationStrategy },
+    { provide: APP_BASE_HREF, useValue: '/' },
     {
       provide: UrlSerializer,
-      useClass: LowerCaseUrlSerializer
-    }
+      useClass: LowerCaseUrlSerializer,
+    },
   ],
   bootstrap: [AppComponent],
 })

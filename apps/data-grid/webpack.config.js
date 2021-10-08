@@ -8,7 +8,7 @@ sharedMappings.register(path.join(__dirname, '../../tsconfig.base.json'), [
   '@srm/shared/alert-dialog',
   '@srm/shared/loading-spinner',
   '@srm/data-grid/api-service',
-  '@srm/data-grid/grid-contents'
+  '@srm/data-grid/grid-contents',
 ]);
 
 module.exports = {
@@ -33,10 +33,26 @@ module.exports = {
         './Module': 'apps/data-grid/src/app/remote-entry/entry.module.ts',
       },
       shared: {
-        '@angular/core': { singleton: true, strictVersion: true },
-        '@angular/common': { singleton: true, strictVersion: true },
-        '@angular/common/http': { singleton: true, strictVersion: true },
-        '@angular/router': { singleton: true, strictVersion: true },
+        '@angular/core': {
+          singleton: true,
+          requiredVersion: '^12.2.0',
+          strictVersion: true,
+        },
+        '@angular/common': {
+          singleton: true,
+          requiredVersion: '^12.2.0',
+          strictVersion: true,
+        },
+        '@angular/common/http': {
+          singleton: true,
+          requiredVersion: '^12.2.0',
+          strictVersion: true,
+        },
+        '@angular/router': {
+          singleton: true,
+          requiredVersion: '^12.2.0',
+          strictVersion: true,
+        },
         ...sharedMappings.getDescriptors(),
       },
     }),

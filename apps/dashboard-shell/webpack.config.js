@@ -27,10 +27,26 @@ module.exports = {
         'data-grid': 'data_grid@http://localhost:4201/remoteEntry.js',
       },
       shared: {
-        '@angular/core': { singleton: true, strictVersion: true },
-        '@angular/common': { singleton: true, strictVersion: true },
-        '@angular/common/http': { singleton: true, strictVersion: true },
-        '@angular/router': { singleton: true, strictVersion: true },
+        '@angular/core': {
+          singleton: true,
+          requiredVersion: '^12.2.0',
+          strictVersion: true,
+        },
+        '@angular/common': {
+          singleton: true,
+          requiredVersion: '^12.2.0',
+          strictVersion: true,
+        },
+        '@angular/common/http': {
+          singleton: true,
+          requiredVersion: '^12.2.0',
+          strictVersion: true,
+        },
+        '@angular/router': {
+          singleton: true,
+          requiredVersion: '^12.2.0',
+          strictVersion: true,
+        },
         ...sharedMappings.getDescriptors(),
       },
     }),
